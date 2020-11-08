@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Data;
 using Data.Models;
 using DataTests.Helpers;
+using Microsoft.EntityFrameworkCore;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -17,14 +18,9 @@ namespace DataTests.Saving
         {
         }
 
-      
-        
-        [Fact]
-        public void AddingANewBlog()
+        public Blog GetNewBlog()
         {
-            var options = this.SetupOptions(seedData:false);
-            int numberOfBlogs = 0;
-            var blog = new Blog()
+            return  new Blog()
             {
                 Url = "http://blog1.com",
                 Posts = new List<Post>()
@@ -37,6 +33,16 @@ namespace DataTests.Saving
                 }
             };
 
+        }
+
+        [Fact]
+        public void AddingANewBlog()
+        {
+            var options = this.SetupOptions(seedData:false);
+            int numberOfBlogs = 0;
+
+            var blog = GetNewBlog();
+
             using  (var context = new BloggingContext(options))
             {
                 logIt = new LogDbContext(context);
@@ -46,7 +52,6 @@ namespace DataTests.Saving
             }
            
             Assert.Equal(1,numberOfBlogs);
-
         }
 
 
@@ -83,17 +88,21 @@ namespace DataTests.Saving
 
             logIt = new LogDbContext(context);
            
-            var blog =  context.Blogs.First();
+            var blog =  context.Blogs.Include(p=>p.Posts).First();
             var newblogName="http://barrapunto.com";
 
             blog.Url = newblogName;
-
+            blog.Posts.Add(new Post()
+            {
+                Content = "My content",
+                Title = "new title"
+            });
             context.SaveChanges();
 
             var blogAfterUpdate = context.Blogs.Single(b => b.Url == newblogName);
 
             Assert.NotNull(blogAfterUpdate);
-
+           
 
         }
 

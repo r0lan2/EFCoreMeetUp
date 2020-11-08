@@ -13,7 +13,7 @@ namespace DataTests.Helpers
 {
     public class TestBase:IAsyncLifetime
     {
-        private readonly ITestOutputHelper _output;
+        protected readonly ITestOutputHelper _output;
         protected LogDbContext logIt;
 
         Task IAsyncLifetime.InitializeAsync()
