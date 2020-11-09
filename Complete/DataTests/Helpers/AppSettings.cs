@@ -24,22 +24,20 @@ namespace DataTests.Helpers
             return builder.Build();
         }
 
-        /// <summary>
-        /// This creates a unique database name based on the branch name and the test class name
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+       
         public static string GetUniqueDatabaseConnectionString<T>(this T testClass)
         {
             var config = GetConfiguration();
-            var orgConnect = config.GetConnectionString(ConnectionStringName);
-            var builder = new SqlConnectionStringBuilder(orgConnect);
+            var connectionString = config.GetConnectionString(ConnectionStringName);
+            //var builder = new SqlConnectionStringBuilder(orgConnect);
 
-            var extraDatabaseName = $".{typeof(T).Name}";
+            //var extraDatabaseName = $".{typeof(T).Name}";
 
-            builder.InitialCatalog += extraDatabaseName;
+            //builder.InitialCatalog += extraDatabaseName;
 
-            return builder.ToString();
+            //return builder.ToString();
+
+            return connectionString;
         }
 
 
