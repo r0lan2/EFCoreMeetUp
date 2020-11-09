@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Data;
+using Data.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataTests.Helpers

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Transactions;
 using Data;
+using Data.Configuration;
 using Data.Models;
 using DataTests.Helpers;
 using EFCore.BulkExtensions;

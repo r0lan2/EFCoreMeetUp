@@ -4,7 +4,7 @@ using System.Text;
 using Data;
 using Data.Models;
 
-namespace DataTests.Helpers
+namespace Data.Configuration
 {
     public static class DataSeeder
     {
