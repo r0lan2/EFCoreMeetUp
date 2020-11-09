@@ -24,6 +24,9 @@ namespace EFCoreConsole
                Console.WriteLine(blogs.Count);
 
            }
+
+           Console.ReadKey();
+
         }
     }
 }
