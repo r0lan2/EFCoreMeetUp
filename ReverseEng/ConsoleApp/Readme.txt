@@ -1,1 +1,3 @@
-Scaffold-DbContext 'Data Source=PCRMARTINEZ\SQL2016;Initial Catalog=BlogEngineDbLegacy;Trusted_Connection=True' Microsoft.EntityFrameworkCore.SqlServer
+- Scaffold-DbContext 'Data Source=PCRMARTINEZ\SQL2016;Initial Catalog=BlogEngineDbLegacy;Trusted_Connection=True' Microsoft.EntityFrameworkCore.SqlServer
+- add new emtpy migration
+- start changing your model
