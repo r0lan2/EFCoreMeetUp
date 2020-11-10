@@ -27,7 +27,7 @@ namespace BlogApi.Controllers
             return Ok(_context.Blogs.Include(bp=>bp.Posts).Select(b => new
             {
                 Url= b.Url,
-                Count= b.Posts
+                Posts= b.Posts
             }).ToList());
         }
 
