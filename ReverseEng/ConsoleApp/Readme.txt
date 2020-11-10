@@ -1,0 +1,1 @@
+Scaffold-DbContext 'Data Source=PCRMARTINEZ\SQL2016;Initial Catalog=BlogEngineDbLegacy;Trusted_Connection=True' Microsoft.EntityFrameworkCore.SqlServer
