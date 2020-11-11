@@ -1,7 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace ConsoleApp
 {
@@ -14,7 +16,6 @@ namespace ConsoleApp
             {
                 var count=context.Blogs.Count();
                 Console.WriteLine(count);
-
             }
             Console.ReadKey();
         }
@@ -22,13 +23,20 @@ namespace ConsoleApp
 
         public static DbContextOptions<BloggingContext> connectionOptions()
         {
-            var connection = "Server=PCRMARTINEZ\\SQL2016;Database=BlogEngineDb;Trusted_Connection=True;MultipleActiveResultSets=true";
             var optionsBuilder = new DbContextOptionsBuilder<BloggingContext>();
 
-            optionsBuilder.UseSqlServer(connection);
+            optionsBuilder.UseSqlServer(GetConnectionString());
             return optionsBuilder.Options;
 
         }
+
+        public static string GetConnectionString()
+        {
+            var builder=new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json",optional:true,reloadOnChange:true);
+            var connectionstr = builder.Build().GetConnectionString("DefaultConnection");
+            return connectionstr;
+        }
+
 
 
     }
