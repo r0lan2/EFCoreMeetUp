@@ -15,7 +15,8 @@ namespace ConsoleAppEF2
             //seeder.Seed();
 
             //new ClientEvaluationTest().Run(Seeder.GetOptions());
-           new QueryUsingUnionTest().Run(Seeder.GetOptions());
+           //new QueryUsingUnionTest().Run(Seeder.GetOptions());
+           new UnionPagingTest().Run(Seeder.GetOptions());
 
             Console.ReadKey();
         }
