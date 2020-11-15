@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 
-namespace ConsoleAppEF2.Samples
+namespace ConsoleAppEF3.Samples
 {
     public class QueryUsingUnionTest
     {

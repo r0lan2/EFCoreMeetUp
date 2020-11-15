@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using ConsoleAppEF2.Samples;
+using ConsoleAppEF3.Samples;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace ConsoleAppEF2
+namespace ConsoleAppEF3
 {
     class Program
     {

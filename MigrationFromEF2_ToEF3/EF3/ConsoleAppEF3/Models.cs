@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 
-namespace ConsoleAppEF2
+namespace ConsoleAppEF3
 {
     public class Blog
     {
@@ -34,10 +34,9 @@ namespace ConsoleAppEF2
 
     public class BlogContext:DbContext
     {
-        
-        public static readonly ILoggerFactory MyLoggerFactory
-            = new LoggerFactory().AddConsole(LogLevel.Information);
 
+        public static readonly ILoggerFactory MyLoggerFactory
+            = LoggerFactory.Create(builder => { builder.AddConsole();});
 
 
         public BlogContext(
@@ -48,7 +47,6 @@ namespace ConsoleAppEF2
         }  
         
         public DbSet<Post> Posts { get; set; }
-
         public DbSet<Blog> Blogs { get; set; }
 
     }

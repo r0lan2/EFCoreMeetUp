@@ -12,7 +12,7 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
 
-            using (var context= new BloggingContext(connectionOptions()))
+            using (var context= new BloggingContext(GetOptions()))
             {
                 var count=context.Blogs.Count();
                 Console.WriteLine(count);
@@ -21,7 +21,7 @@ namespace ConsoleApp
         }
 
 
-        public static DbContextOptions<BloggingContext> connectionOptions()
+        public static DbContextOptions<BloggingContext> GetOptions()
         {
             var optionsBuilder = new DbContextOptionsBuilder<BloggingContext>();
 
