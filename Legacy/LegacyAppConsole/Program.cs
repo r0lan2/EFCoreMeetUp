@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
+using Microsoft.Extensions.Configuration;
 
 namespace LegacyAppConsole
 {
@@ -10,6 +12,12 @@ namespace LegacyAppConsole
         {
             var blogReader= new BlogReader();
             var blogs = blogReader.GetBlogs();
+
+            foreach (var blog in blogs)
+            {
+                Console.WriteLine(blog.Name);
+            }
+
             Console.ReadKey();
         }
 
@@ -41,10 +49,13 @@ namespace LegacyAppConsole
             return blogs;
         }
 
-        //TODO: add code to reead connection string from configuration file
+       
         public string GetConnnectionString()
         {
-            return "Server=PCRMARTINEZ\\SQL2016;Database=BlogEngineDbLegacy;Trusted_Connection=True;MultipleActiveResultSets=true";
+            var builder=new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json",optional:true,reloadOnChange:true);
+            var connectionstr = builder.Build().GetConnectionString("DefaultConnection");
+            return connectionstr;
+
         }
     }
 
