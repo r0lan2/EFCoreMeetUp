@@ -2,30 +2,35 @@
 using System.Collections.Generic;
 using System.Linq;
 
+
+
+//Scaffold-DbContext  "Server=PCRMARTINEZ\SQL2016;Database=BlogEngineDbLegacy;Trusted_Connection=True;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer
+//Add empty migration
+//update-database
 namespace EFCoreConsole
 {
     class Program
     {
         static void Main(string[] args)
         {
-           using (var context= new BlogContext())
-           {
-              
-
-               context.Blogs.Add(new Blog()
-               {
-                   Name = "This is a blog",
-                   Posts = new List<Post>() {new Post(){Content = "new content"}}
-               });
-               context.SaveChanges();
+            //using (var context = new BlogContext())
+            //{
 
 
-               var blogs= context.Blogs.ToList();
-               Console.WriteLine(blogs.Count);
+            //    context.Blogs.Add(new Blog()
+            //    {
+            //        Name = "This is a blog",
+            //        Posts = new List<Post>() { new Post() { Content = "new content" } }
+            //    });
+            //    context.SaveChanges();
 
-           }
 
-           Console.ReadKey();
+            //    var blogs = context.Blogs.ToList();
+            //    Console.WriteLine(blogs.Count);
+
+            //}
+
+            Console.ReadKey();
 
         }
     }
