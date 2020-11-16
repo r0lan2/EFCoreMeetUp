@@ -4,23 +4,20 @@ using System.Linq;
 
 
 
-//Scaffold-DbContext  "Server=PCRMARTINEZ\SQL2016;Database=BlogEngineDbLegacy;Trusted_Connection=True;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer
-//Add empty migration
-//update-database
 namespace EFCoreConsole
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //using (var context = new BlogContext())
+            //using (var context = new BlogEngineDbLegacyContext())
             //{
 
 
-            //    context.Blogs.Add(new Blog()
+            //    context.Blogs.Add(new Blogs()
             //    {
-            //        Name = "This is a blog",
-            //        Posts = new List<Post>() { new Post() { Content = "new content" } }
+            //        Url = "This is a blog",
+            //        Posts = new List<Posts>() { new Posts() { Content = "new content" } }
             //    });
             //    context.SaveChanges();
 
