@@ -6,7 +6,16 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //using (var context= new BlogEngineDbLegacyContext())
+            //{
+            //    var blogs = context.Blogs;
+            //    foreach (var blog in blogs)
+            //    {
+            //        Console.WriteLine(blog.Url);
+            //    }
+            //}
+
+            //Console.ReadKey();
         }
     }
 }
