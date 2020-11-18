@@ -35,6 +35,13 @@
         public DbSet<Post> Posts { get; set; }
 
        
+         public AppContext(DbContextOptions<AppContext> options)
+            : base(options)
+        {
+
+        }   
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -63,3 +70,53 @@
                 Console.WriteLine(blogs.Count);
 
             }
+
+
+
+
+
+
+
+  public class Program
+    {
+        static void Main(string[] args)
+        {
+            using (var context = new AppContext())
+            {
+
+
+                context.Blogs.Add(new Blog()
+                {
+                    Url = "This is a blog",
+                    Posts = new List<Post>() { new Post() { Content = "new content",Title = "a nice title"} }
+                });
+                context.SaveChanges();
+
+
+                var blogs = context.Blogs.ToList();
+                Console.WriteLine(blogs.Count);
+
+            }
+
+            Console.ReadKey();
+
+        }
+
+        public static DbContextOptions<AppContext> GetOptions()
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<AppContext>();
+
+            optionsBuilder.UseSqlServer(GetConnectionString());
+            return optionsBuilder.Options;
+
+        }
+
+        public static string GetConnectionString()
+        {
+            var builder=new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json",optional:true,reloadOnChange:true);
+            var connectionstr = builder.Build().GetConnectionString("DefaultConnection");
+            return connectionstr;
+        }
+
+
+    }
