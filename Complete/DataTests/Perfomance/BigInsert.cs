@@ -22,7 +22,7 @@ namespace DataTests.Perfomance
         [Fact]
         public void Adding2MOfBlogsUsingExtensions()
         {
-            var blogs = DataSeeder.GetBlogs(2000000);
+            var blogs = DataSeeder.GetBlogs(1000000);
             var options = this.SetupOptions(seedData: false);
             using var context = new BloggingContext(options);
           

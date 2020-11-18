@@ -26,7 +26,7 @@ namespace DataTests.InMemory
             var builder =
                 new DbContextOptionsBuilder<BloggingContext>();
 
-            builder.UseInMemoryDatabase("rola");
+            builder.UseInMemoryDatabase("BlogDbInMemory");
             return builder;
         }
 

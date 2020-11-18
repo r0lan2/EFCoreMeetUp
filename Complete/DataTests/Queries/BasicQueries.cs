@@ -26,13 +26,15 @@ namespace DataTests.Queries
         {
             var options = this.SetupOptions(seedData:true);
 
-            using var context = new BloggingContext(options);
+            using (var context = new BloggingContext(options))
+            {
 
-            logIt = new LogDbContext(context);
+                logIt = new LogDbContext(context);
 
-            var blogs = context.Blogs.ToList();
+                var blogs = context.Blogs.ToList();
 
-            Assert.NotEmpty(blogs);
+                Assert.NotEmpty(blogs);
+            }
         }
 
 
