@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
 
 namespace ConsoleApp
@@ -11,13 +12,24 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
+            int count = 1;
 
-            using (var context= new BloggingContext(GetOptions()))
+            while (count <= 7)
+
             {
-                var count=context.Blogs.Count();
-                Console.WriteLine(count);
+
+                Console.WriteLine("The value of count = " + count); count++;
+
             }
+
+
             Console.ReadKey();
+            //using (var context= new BloggingContext(GetOptions()))
+            //{
+            //    var count=context.Blogs.Count();
+            //    Console.WriteLine(count);
+            //}
+            //Console.ReadKey();
         }
 
 

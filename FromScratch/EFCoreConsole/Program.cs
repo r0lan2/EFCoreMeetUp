@@ -13,29 +13,34 @@ namespace EFCoreConsole
     {
         static void Main(string[] args)
         {
-            //using (var context = new AppContext())
-            //{
+            using (var context = new AppContext())
+            {
+                var blog = new Blog()
+                {
+                    Url = "www.asp.net",
+                    Author = "nn",
+                    Posts = new List<Post>()
+                    {
+                        new Post()
+                        {
+                            Title = "este es mi titulo",
+                            Content = "este es mi contenido"
+                        }
+                    }
+                };
+                context.Blogs.Add(blog);
+                context.SaveChanges();
 
+                var blogsFromDb = context.Blogs.ToList();
+                foreach (var b in blogsFromDb)
+                {
+                    Console.WriteLine(b.Url);
+                }
 
-            //    context.Blogs.Add(new Blog()
-            //    {
-            //        Url = "This is a blog",
-            //        Posts = new List<Post>() { new Post() { Content = "new content",Title = "a nice title"} }
-            //    });
-            //    context.SaveChanges();
-
-
-            //    var blogs = context.Blogs.ToList();
-            //    Console.WriteLine(blogs.Count);
-
-            //}
+            }
 
             Console.ReadKey();
 
         }
-
-       
-
-
     }
 }

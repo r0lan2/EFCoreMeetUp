@@ -31,7 +31,10 @@ namespace DataTests.Queries
 
                 logIt = new LogDbContext(context);
 
-                var blogs = context.Blogs.ToList();
+                var blogs = context.Blogs.Select(b=>new 
+                {
+                    BlogId=b.BlogId
+                });
 
                 Assert.NotEmpty(blogs);
             }
