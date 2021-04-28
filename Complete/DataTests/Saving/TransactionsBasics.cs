@@ -20,6 +20,35 @@ namespace DataTests.Saving
 
 
         [Fact]
+        public void InternalTransaction()
+        {
+            var options = this.SetupOptions(seedData: false);
+
+            using var context = new BloggingContext(options);
+
+            try
+            {
+                logIt = new LogDbContext(context);
+                context.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/dotnet" });
+
+                context.Blogs.Add(new Blog { Url = null });
+                context.SaveChanges();
+            }
+            catch 
+            {
+                //for testing purposes
+            }
+            
+            var blogs = context.Blogs
+                .OrderBy(b => b.Url)
+                .ToList();
+            Assert.Empty(blogs);
+
+        }
+
+
+
+        [Fact]
         public void UsingTransaction()
         {
             var options = this.SetupOptions(seedData:false);
@@ -27,25 +56,30 @@ namespace DataTests.Saving
             using var context = new BloggingContext(options);
             using var transaction = context.Database.BeginTransaction();
             logIt = new LogDbContext(context);
+            try
+            {
+                context.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/dotnet" });
+                context.SaveChanges();
 
-            context.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/dotnet" });
-            context.SaveChanges();
+                context.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/dotnet2" });
+                context.SaveChanges();
+                transaction.Commit();
+            }
+            catch (Exception e)
+            {
+                transaction.Rollback();
+            }
 
-            context.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/dotnet2" });
-            context.SaveChanges();
 
-            transaction.Commit();
-
-            var blogs =  context.Blogs
+            var blogs = context.Blogs
                   .OrderBy(b => b.Url)
                  .ToList();
-
             Assert.NotEmpty(blogs);
-           
+
         }
 
 
-        
+
         [Fact]
         public void UsingTransactionWithRollback()
         {

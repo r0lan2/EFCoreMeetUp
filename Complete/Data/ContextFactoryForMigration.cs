@@ -22,8 +22,7 @@ namespace Data
 
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             var optionsBuilder = new DbContextOptionsBuilder<BloggingContext>();
-            optionsBuilder.UseSqlServer(connectionString,
-                b => b.MigrationsAssembly("Data"));
+            optionsBuilder.UseSqlServer(connectionString, b => b.MigrationsAssembly("Data"));
 
             return new BloggingContext(optionsBuilder.Options);
         }
